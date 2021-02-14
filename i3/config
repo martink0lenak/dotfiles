@@ -34,9 +34,15 @@ exec xrandr --output DP-1 --auto --primary --left-of HDMI-0 --auto
 
 exec xinput --set-prop 15 304 0, 1
 
+# set wallpaper
+exec --no-startup-id feh --bg-fill ~/.config/wallpapers/landscape.jpg
+
+
 #launch polybar
 exec_always --no-startup-id ~/.config/polybar/launch.sh &
 
+#launch xcompmgr
+exec_always picom &
 
 # Use pactl to adjust volume in PulseAudio.
 set $refresh_i3status killall -SIGUSR1 i3status
@@ -49,7 +55,7 @@ bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOU
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec gnome-terminal 
+bindsym $mod+Return exec xfce4-terminal --hide-menubar
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -107,10 +113,13 @@ bindsym $mod+Shift+space floating toggle
 bindsym $mod+space focus mode_toggle
 
 # focus the parent container
-bindsym $mod+a focus parent
+#bindsym $mod+a focus parent
 
 # focus the child container
 #bindsym $mod+d focus child
+
+# rectangle screenshot
+bindsym $mod+Print exec "scrot -s ~/Pictures/Screenshots/%b%d::%H:%M.png"
 
 # open web browser
 bindsym $mod+F1 exec firefox 
@@ -151,12 +160,18 @@ workspace $ws9 output HDMI-0
 workspace $ws10 output HDMI-0
 
 # Assigning apps to workspaces
-assign [class="Gnome-terminal"] 1
+assign [class="xfce4-terminal"] 1
 assign [class="code-oss"] 2
+assign [class="libreoffice"] 4
 assign [class="Firefox"] 6
 assign [class="discord"] 7
 assign [class="microsoft teams - preview"] 8
+assign [class="dolphin"] 9 
 
+for_window [class=.*] border pixel 0
+gaps inner 20
+gaps top 30 
+gaps bottom 3 
 
 # switch to workspace
 bindsym $mod+1 workspace number $ws1
@@ -245,8 +260,4 @@ exec border normal 0
 client.focused #5a7075   #5a7075   #ffffff #5a7075       #5a7075
 client.unfocused #383838 #383838 #ffffff #383838 #383838
 client.focused_inactive #383838 #383838 #ffffff #383838 #383838
-
-# Setting the wallpaper
-exec feh --bg-fill ~/.config/wallpaper/planets2.jpg 
-
 

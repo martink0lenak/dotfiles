@@ -96,7 +96,7 @@ if &term =~ '256color'
 endif
 
 " vim-airline
-let g:airline_theme = 'dark'
+let g:airline_theme = 'fruit_punch'
 let g:airline#extensions#branch#enabled = 1
 let g:airline#extensions#ale#enabled = 1
 let g:airline#extensions#tabline#enabled = 1
@@ -114,7 +114,7 @@ let python_highlight_all = 1
 map <F3> :NERDTreeToggle<CR>
 
 " Clear search highlighting
-map <F2> :noh
+map <F2> :noh<CR>
 " Ale
 let g:ale_linters = {'python': ['mypy', 'flake8']}
 let g:python_mypy_options = '--strict'

@@ -1,14 +1,11 @@
-[settings]
-pseudo-transparency = true
 [colors]
-background = #FF333333
+background = #FF332C2C 
 foreground = #FF68D6CE
 
 [global/wm]
-margin-top = 0
+margin-top = 0 
 margin-bottom = 0
 fixed-center = true
-override-redirect = true
 
 [module/i3]
 type = internal/i3
@@ -18,16 +15,45 @@ enable-click = false
 label-mode = %mode%
 
 label-focused = %icon% %index%
-label-focused-foreground = #222222
-labed-focused-background = #CACAFC 
+label-focused-foreground = #FFE17984
+label-focused-background = #E6444444
+label-focused-padding = 1
+
+label-unfocused = %icon% %index%
+label-unfocused-foreground = #f7d9e2
+label-unfocused-background = #E6444444
+label-unfocused-padding = 1 
+
+label-visible = %icon% %index%
+label-visible-background = #E6444444
+label-visible-foreground = #87b7d1
+label-visible-padding = 1
+
+
+ws-icon-0 = 1;
+ws-icon-1 = 2;
+ws-icon-2 = 3;
+ws-icon-3 = 4;
+ws-icon-4 = 5;
+ws-icon-5 = 6;
+ws-icon-6 = 7;
+ws-icon-7 = 8;
+ws-icon-8 = 9;
+ws-icon-default = 
+
+label-separator = " "
 
 [bar/bar1]
 bottom = false
 width = 100%
-height = 30 
+height = 32 
 modules-left = i3
-padding-left = 0
-padding-right = 1
+padding-left = 2
+padding-right = 2
+
+
+override-redirect = true
+ 
 
 border-size = 0
 border-top-size = 0
@@ -35,7 +61,11 @@ border-left-size = 0
 border-right-size = 0
 border-bottom-size = 0
 
-font-0 = "Source Code Pro:style=Medium:size=14;3"
-font-1 = "Material Icons:style=Regular:size=14;3"
-background = ${colors.background}
+padding = 10,0
+
+font-0 = "Font Awesome 5 Free:style=Solid:pixelsize=13;4"
+font-1 = "Font Awesome 5 Brands:pixelsize=13;4"
+font-2 = "Font Awesome 5 Free:style=Regular:pixelsize=13;4"
+font-3 = "Material Icons:style=Regular:pixelsize=13;4"
+background = #E6444444
 foreground = ${colors.foreground}
