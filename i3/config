@@ -30,19 +30,18 @@ exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 exec --no-startup-id nm-applet
 
 # Set the monitor position
-exec xrandr --output DP-1 --auto --primary --left-of HDMI-0 --auto
+exec --no-startup-id xrandr --output DP-1 --auto --primary --left-of HDMI-0 --auto
 
-exec xinput --set-prop 15 304 0, 1
+exec --no-startup-id xinput --set-prop 15 304 0, 1
 
 # set wallpaper
-exec --no-startup-id feh --bg-fill ~/.config/wallpapers/landscape.jpg
 
 
 #launch polybar
 exec_always --no-startup-id ~/.config/polybar/launch.sh &
 
-#launch xcompmgr
-exec_always picom &
+#launch a compositing manager 
+exec_always --no-startup-id picom &
 
 # Use pactl to adjust volume in PulseAudio.
 set $refresh_i3status killall -SIGUSR1 i3status
@@ -252,7 +251,6 @@ bindsym $mod+r mode "resize"
 #           
 #}
  
-exec border normal 0
 
 # Setting window colors
 # class         border  background   text  indicator   child_border
@@ -261,3 +259,4 @@ client.focused #5a7075   #5a7075   #ffffff #5a7075       #5a7075
 client.unfocused #383838 #383838 #ffffff #383838 #383838
 client.focused_inactive #383838 #383838 #ffffff #383838 #383838
 
+exec --no-startup-id nitrogen --restore

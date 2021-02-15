@@ -1,11 +1,45 @@
 [colors]
-background = #FF332C2C 
-foreground = #FF68D6CE
+background = #E6444444 
+foreground = #fff4ebed 
+
 
 [global/wm]
 margin-top = 0 
 margin-bottom = 0
 fixed-center = true
+
+
+[bar/bar1]
+bottom = false
+width = 100%
+height = 35 
+
+modules-left = i3
+modules-right = wired-net ramus cputemp cpuus time  powermenu
+
+padding-left = 2
+padding-right = 2
+
+override-redirect = true
+line-size = 3 
+
+border-size = 0
+border-top-size = 0
+border-left-size = 0
+border-right-size = 0
+border-bottom-size = 0
+
+padding = 10,0
+separator = "   "
+
+font-0 = "Font Awesome 5 Free:style=Solid:pixelsize=13;4"
+font-1 = "Font Awesome 5 Brands:pixelsize=13;4"
+font-2 = "Font Awesome 5 Free:style=Regular:pixelsize=13;4"
+font-3 = "Ubuntu:style=Regular:pixelsize=13;2"
+font-4 = "Material Icons:style=Regular:pixelsize=13;4"
+background = ${colors.background}
+foreground = ${colors.foreground}
+
 
 [module/i3]
 type = internal/i3
@@ -20,7 +54,7 @@ label-focused-background = #E6444444
 label-focused-padding = 1
 
 label-unfocused = %icon% %index%
-label-unfocused-foreground = #f7d9e2
+label-unfocused-foreground = ${colors.foreground} 
 label-unfocused-background = #E6444444
 label-unfocused-padding = 1 
 
@@ -28,7 +62,6 @@ label-visible = %icon% %index%
 label-visible-background = #E6444444
 label-visible-foreground = #87b7d1
 label-visible-padding = 1
-
 
 ws-icon-0 = 1;
 ws-icon-1 = 2;
@@ -43,29 +76,88 @@ ws-icon-default = 
 
 label-separator = " "
 
-[bar/bar1]
-bottom = false
-width = 100%
-height = 32 
-modules-left = i3
-padding-left = 2
-padding-right = 2
+
+[module/time]
+type = internal/date
+
+format = <label>
+format-background = #E6444444
+format-foreground = #f7d9e2
+
+time = "%H:%M:%S" 
+
+label = %time%
+label-foreground = ${colors.foreground}
 
 
-override-redirect = true
- 
+[module/powermenu]
+type = custom/menu
 
-border-size = 0
-border-top-size = 0
-border-left-size = 0
-border-right-size = 0
-border-bottom-size = 0
+expand-right = false
+label-open = 
+label-close = 
 
-padding = 10,0
+menu-0-0 = 
+menu-0-0-exec = systemctl poweroff 
 
-font-0 = "Font Awesome 5 Free:style=Solid:pixelsize=13;4"
-font-1 = "Font Awesome 5 Brands:pixelsize=13;4"
-font-2 = "Font Awesome 5 Free:style=Regular:pixelsize=13;4"
-font-3 = "Material Icons:style=Regular:pixelsize=13;4"
-background = #E6444444
-foreground = ${colors.foreground}
+menu-0-1 = 
+menu-0-1-exec = systemctl reboot
+
+menu-0-2 = 
+menu-0-2-exec = systemctl suspend 
+
+menu-0-3 = 
+menu-0-3-exec = i3-msg exit
+
+label-separator = "  "
+
+
+
+[module/cpuus]
+type = internal/cpu
+
+interval = 2.0
+
+format = <label>
+label =   %percentage%%
+label-underline = #e55261 
+
+
+[module/cputemp]
+type = internal/temperature
+
+interval = 2.0
+
+format = <label>
+label =   %temperature-c%
+label-underline = #767bb3
+
+
+[module/ramus]
+type = internal/memory
+
+interval = 2.0
+
+format = <label>
+label =   %gb_used% / %gb_total%
+
+label-underline = #c98698 
+
+
+[module/wired-net]
+type = internal/network
+
+interface = eno2
+
+format-connected = <label-connected>
+format-disconnected = <label-disconnected>
+
+label-connected =   %local_ip%  |    %downspeed%    %upspeed%
+
+label-disconnected =   down
+label-disconected-foreground = #E17984
+
+label-connected-underline = #95ede7 
+label-disconnected-underline = #95ede7
+
+
