@@ -34,14 +34,16 @@ exec --no-startup-id xrandr --output DP-1 --auto --primary --left-of HDMI-0 --au
 
 exec --no-startup-id xinput --set-prop 15 304 0, 1
 
-# set wallpaper
+# Set keyboard layouts and switching keybinds
+exec "setxkbmap -option 'grp:win_space_toggle' -layout us,sk -variant ,qwerty"
 
 
 #launch polybar
 exec_always --no-startup-id ~/.config/polybar/launch.sh &
 
 #launch a compositing manager 
-#exec_always --no-startup-id picom &
+#picom-ibhagwan fork
+exec --no-startup-id picom &
 
 # Use pactl to adjust volume in PulseAudio.
 set $refresh_i3status killall -SIGUSR1 i3status
@@ -179,8 +181,8 @@ client.focused_inactive #383838 #383838 #87B7D1 #87B7D1 #383838
 
 # setting gaps for i3-gaps
 gaps inner 20
-gaps top 30 
-gaps bottom 3 
+gaps top 0 
+gaps bottom 25 
 
 # switch to workspace
 bindsym $mod+1 workspace number $ws1
