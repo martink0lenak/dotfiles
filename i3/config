@@ -56,7 +56,7 @@ bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOU
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec xfce4-terminal --hide-menubar
+bindsym $mod+Return exec alacritty 
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -170,19 +170,18 @@ assign [class="microsoft teams - preview"] 8
 assign [class="dolphin"] 9 
 
 # Disabling window borders
-for_window [class=.*] border pixel 0
+for_window [class=.*] border pixel 0 
 
 # Setting window colors
 # class         border  background   text  indicator   child_border
 
-client.focused #ffafaf   #383838   #ffafaf #ffafaf  #383838
-client.unfocused #383838 #383838 #eeeeee #383838 #383838
-client.focused_inactive #383838 #383838 #87B7D1 #87B7D1 #383838
+client.focused #1d2026   #383838   #ffafaf #ffafaf  #383838
+client.unfocused #1d2026 #383838 #eeeeee #383838 #383838
+client.focused_inactive #1d2026 #383838 #87B7D1 #87B7D1 #383838
 
 # setting gaps for i3-gaps
-gaps inner 20
-gaps top 0 
-gaps bottom 25 
+gaps inner 16  
+gaps top 5 
 
 # switch to workspace
 bindsym $mod+1 workspace number $ws1
@@ -221,38 +220,30 @@ bindsym $mod+Shift+s exec "shutdown now"
 exec --no-startup-id nitrogen --restore
 
 
+mode "resize" {
+    # These bindings trigger as soon as you enter the resize mode
 
+    # Pressing left will shrink the window’s width.
+    # Pressing right will grow the window’s width.
+    # Pressing up will shrink the window’s height.
+    # Pressing down will grow the window’s height.
+    bindsym j           resize shrink width 10 px or 10 ppt
+    bindsym k           resize grow height 10 px or 10 ppt
+    bindsym l           resize shrink height 10 px or 10 ppt
+    bindsym semicolon   resize grow width 10 px or 10 ppt
 
+    # same bindings, but for the arrow keys
+    bindsym Left        resize shrink width 10 px or 10 ppt
+    bindsym Down        resize grow height 10 px or 10 ppt
+    bindsym Up          resize shrink height 10 px or 10 ppt
+    bindsym Right       resize grow width 10 px or 10 ppt
 
-##############################################################################
+    # back to normal: Enter or Escape
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
 
-# resize window (you can also use the mouse for that)
-#mode "resize" {
-        # These bindings trigger as soon as you enter the resize mode
-
-        # Pressing left will shrink the window’s width.
-        # Pressing right will grow the window’s width.
-        # Pressing up will shrink the window’s height.
-        # Pressing down will grow the window’s height.
-#        bindsym j resize shrink width 10 px or 10 ppt
-#        bindsym k resize grow height 10 px or 10 ppt
-#        bindsym l resize shrink height 10 px or 10 ppt
-#        bindsym semicolon resize grow width 10 px or 10 ppt
-
-        # same bindings, but for the arrow keys
-#        bindsym Left resize shrink width 10 px or 10 ppt
-#        bindsym Down resize grow height 10 px or 10 ppt
-#        bindsym Up resize shrink height 10 px or 10 ppt
-#        bindsym Right resize grow width 10 px or 10 ppt
-#
-#        # back to normal: Enter or Escape or $mod+r
-#        bindsym Return mode "default"
-#        bindsym Escape mode "default"
-#        bindsym $mod+r mode "default"
-#}
-
+# Enter resize mode
 bindsym $mod+r mode "resize"
 
-
-##############################################################################
 

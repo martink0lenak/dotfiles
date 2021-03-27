@@ -1,10 +1,8 @@
 [colors]
 background = #00292d2d 
-foreground = #FF21282b
-; foreground = #fff4ebed 
-; foreground-focused = #FFE17984
-foreground-focused = #FFfc5566
-foreground-visible = #FF87B7D1
+foreground = #ffc0c4ce
+foreground-focused = #FFffafaf
+foreground-visible = #FF82e0c4
  
 
 [global/wm]
@@ -22,12 +20,11 @@ offset-y = 0
 radius = 0 
 
 modules-left = i3
-modules-right = wired-net ramus cputemp cpuus volume_out xkeyboard time  powermenu 
+modules-right = wired-net ramus cputemp cpuus volume_out xkeyboard time powermenu 
 
-padding-left = 2
-padding-right = 2
+padding-left = 2 
+padding-right = 3 
 
-override-redirect = true
 line-size = 3 
 
 border-size = 0
@@ -39,11 +36,11 @@ border-bottom-size = 0
 padding = 10,0
 separator = "   "
 
-font-0 = "Font Awesome 5 Free:style=Solid:pixelsize=13;4"
-font-1 = "Font Awesome 5 Brands:pixelsize=13;4"
-font-2 = "Font Awesome 5 Free:style=Regular:pixelsize=13;4"
-font-3 = "Ubuntu:style=Regular:pixelsize=13;3"
-font-4 = "Material Icons:style=Regular:pixelsize=13;4"
+font-0 = "Powerline Extra Symbols:style=Regular:pixelsize=17;4"
+font-1 = "JetBrains Mono:style=Semibold:pixelsize=13;4"
+font-2 = "Font Awesome 5 Free:style=Solid:pixelsize=13;4"
+font-3 = "Font Awesome 5 Brands:pixelsize=13;4"
+font-4 = "Font Awesome 5 Free:style=Regular:pixelsize=13;4"
 background = ${colors.background}
 foreground = ${colors.foreground}
 
@@ -63,10 +60,9 @@ radius = 0
 modules-left = i3
 modules-center = date
 
-padding-left = 4 
+padding-left = 2 
 padding-right = 2
 
-override-redirect = true
 line-size = 3 
 
 border-size = 0
@@ -76,15 +72,19 @@ border-right-size = 0
 border-bottom-size = 0
 
 padding = 10,0
-separator = "   "
+separator = ""
 
-font-0 = "Font Awesome 5 Free:style=Solid:pixelsize=13;4"
-font-1 = "Font Awesome 5 Brands:pixelsize=13;4"
-font-2 = "Font Awesome 5 Free:style=Regular:pixelsize=13;4"
-font-3 = "Ubuntu:style=Regular:pixelsize=13;2"
-font-4 = "Material Icons:style=Regular:pixelsize=13;4"
+font-0 = "Powerline Extra Symbols:style=Regular:pixelsize=21;4"
+font-1 = "JetBrains Mono:style=Semibold:pixelsize=13;4"
+font-2 = "Font Awesome 5 Free:style=Solid:pixelsize=13;4"
+font-3 = "Font Awesome 5 Brands:pixelsize=13;4"
+font-4 = "Font Awesome 5 Free:style=Regular:pixelsize=13;4"
+font-5 = "Ubuntu:style=Regular:pixelsize=13;2"
 background = ${colors.background}
 foreground = ${colors.foreground}
+
+
+; WM
 
 
 [module/i3]
@@ -95,7 +95,7 @@ enable-click = true
 label-mode = %mode%
 
 label-focused = %icon% %index%
-label-focused-foreground = ${colors.foreground-focused} 
+label-focused-foreground = #ffffafaf 
 label-focused-background = ${colors.background}
 label-focused-padding = 1
 
@@ -105,7 +105,7 @@ label-unfocused-background = ${colors.background}
 label-unfocused-padding = 1 
 
 label-visible = %icon% %index%
-label-visible-foreground = #87B7D1
+label-visible-foreground = ${colors.foreground-visible} 
 label-visible-background = ${colors.background}
 label-visible-padding = 1
 
@@ -121,7 +121,10 @@ ws-icon-8 = 9;
 ws-icon-9 = 10;
 ws-icon-default = 
 
-label-separator = " "
+label-separator = ""
+
+
+; Date/Time
 
 
 [module/time]
@@ -129,7 +132,7 @@ type = internal/date
 
 format = <label>
 format-background = ${colors.background} 
-format-foreground = #f7d9e2
+format-foreground = ${colors.foreground}
 
 time = "%H:%M:%S" 
 
@@ -141,7 +144,7 @@ label-foreground = ${colors.foreground}
 type = internal/date
 format = <label>
 format-background = ${colors.background}
-format-foreground = #f7d9e2
+format-foreground = ${colors.foreground}
 
 date = "%d %b %Y"
 label = %date%
@@ -150,7 +153,7 @@ label-foreground = ${colors.foreground}
 
 
 
-; System
+; Menu 
 
 
 
@@ -174,6 +177,10 @@ menu-0-3 = 
 menu-0-3-exec = i3-msg exit
 
 label-separator = "  "
+label-open-foreground = #ffafaf
+
+
+; Hardware
 
 
 
@@ -183,9 +190,8 @@ type = internal/cpu
 interval = 2.0
 
 format = <label>
-label =   %percentage%%
-label-underline = #e55261 
-
+label =  %percentage%%
+format-foreground = ${colors.foreground}
 
 [module/cputemp]
 type = internal/temperature
@@ -196,8 +202,7 @@ hwmon-path = /sys/devices/platform/coretemp.0/hwmon/hwmon4/temp1_input
 interval = 2.0
 
 format = <label>
-label =   %temperature-c%
-label-underline = #767bb3
+label =  %temperature-c%
 
 
 [module/ramus]
@@ -206,9 +211,9 @@ type = internal/memory
 interval = 2.0
 
 format = <label>
-label =   %percentage_used%%
+label =   %percentage_used%%
 
-label-underline = #c98698
+label-background = ${colors.background}
 
 
 [module/wired-net]
@@ -217,15 +222,13 @@ type = internal/network
 interface = eno2
 
 format-connected = <label-connected>
-format-disconnected = <label-disconnected>
+format-disconnected = <label-disconnected> 　
 
-label-connected =   %local_ip%
+label-connected =   %local_ip%
+label-connected-foreground = ${colors.foreground}
 
-label-disconnected =   down
-label-disconected-foreground = #E17984
-
-label-connected-underline = #95ede7
-label-disconnected-underline = #95ede7
+label-disconnected =  down
+label-disconnected-foreground = ${colors.foreground}
 
 
 
@@ -240,9 +243,9 @@ sink = alsa_output.pci-0000_00_1f.3.analog-stereo
 
 interval = 2
 
-format-volume = <ramp-volume>  <label-volume>
+format-volume = <ramp-volume> <label-volume>
 label-volume = %percentage%
-label-muted =   muted
+label-muted =  muted
 
 ramp-volume-0 = 
 ramp-volume-1 = 
@@ -257,8 +260,8 @@ sink = alsa_input.usb-Samson_Technologies_Samson_Go_Mic-00.analog-stereo
 interval = 1
 
 format-volume = <label-volume>
-label-volume =   %percentage% 
-label-muted =   muted
+label-volume =  %percentage% 
+label-muted =  muted
 
 click-right = pavucontrol
 
@@ -274,7 +277,7 @@ type = internal/xkeyboard
 blacklist-0 = scroll lock
 blacklist-1 = num lock
 
-format = <label-layout>  <label-indicator>
+format = <label-layout> <label-indicator>
 
 label-layout = %icon%
 layout-icon-0 = us;US 
@@ -284,8 +287,22 @@ label-indicator-on-capslock = A
 label-indicator-off-capslock = a
 
 
+; Separators
 
+[module/ip-l]
+type = custom/text
 
+content =  
 
+content-background = ${colors.background}
+content-foreground = #9baacc
+
+[module/ram-l]
+type = custom/text
+
+content = ""
+
+content-background = #606a7e
+content-foreground = ${colors.foreground-visible} 
 
 
